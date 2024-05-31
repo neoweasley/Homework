@@ -1,0 +1,30 @@
+LIBRARY IEEE;
+USE IEEE.std_logic_1164.ALL;
+use ieee.std_logic_unsigned.all;
+
+entity power is
+port( clk: in std_logic;
+      clkout: out std_logic
+      );
+end power;
+
+architecture arch_power of power is
+   signal cnt : std_logic :='1';
+    begin
+     process(clk)
+     variable i : integer range 0 to 100 :=0;
+     begin
+      
+    if(clk'event and clk='1')then
+        if(i=100)then
+            i:=0;
+            cnt<=not cnt;
+        else
+            i:=i+1;
+        end if;
+    end if;
+    end process;
+    clkout<=cnt;
+
+
+end arch_power;
